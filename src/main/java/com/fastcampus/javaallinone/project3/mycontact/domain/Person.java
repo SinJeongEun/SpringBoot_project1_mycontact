@@ -4,6 +4,9 @@ import com.fastcampus.javaallinone.project3.mycontact.domain.dto.Birthday;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 
 @RequiredArgsConstructor
 @Entity
@@ -17,13 +20,19 @@ public class Person {
     private Long id;
 
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String name;
+
     @NonNull
+    @Min(1)
     private  int age;
 
     private String hobby;
 
     @NonNull
+    @NotEmpty
+    @Column(nullable = false)
     private String bloodType;
 
 
