@@ -29,8 +29,8 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)  //성공일 경우 201번
-    public void postPerson(@RequestBody Person person) {
-        personService.put(person);
+    public void postPerson(@RequestBody PersonDto personDto) {
+        personService.put(personDto);
     }
 
     @PutMapping("/{id}")
