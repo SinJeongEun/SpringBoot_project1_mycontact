@@ -76,7 +76,7 @@ public class Person {
         }
 
         public boolean isBirthdayToday(){
-            return LocalDate.now().equals(LocalDate.of(this.birthday.getYearOfBirthday(),this.birthday.getYearOfBirthday(),this.birthday.getDayOfBirthday()));
+            return LocalDate.now().equals(LocalDate.of(this.birthday.getYearOfBirthday(),this.birthday.getMonthOfBirthday(),this.birthday.getDayOfBirthday()));
         }
 
 
