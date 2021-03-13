@@ -6,7 +6,7 @@ main/resources에 선언하게 되면, 서버를 시작할 때 쿼리가 실행�
 test/resources에 선언하게 되면, 테스트를 실행할 때 쿼리가 실행됨
 
 
-cascade
+1.cascade
 관련된 entity의 영속성을 함께 관리할 수 있도록 해줌
 CascadeType.PERSIST
 insert할 경우 관련 entity도 함께 insert함
