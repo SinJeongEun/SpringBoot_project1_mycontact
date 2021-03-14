@@ -131,3 +131,52 @@ assertThat은 자바 객체 검증 -> assertThat(result.getname()).isEqualsTo("m
 
 JSon타입 검증 -> jsonPath($.name).value("martin") //위와 동일한 기능이지만 $는 객체별을 의미
 
+
+# Exception Handling #1
+
+## 이론
+
+- Exception의 종류
+  - Checked Exception
+  - Unchecked Exception (Runtime Exception)
+- Custom Exception의 필요성
+  - 시스템의 오류와 분류하여 처리하기 위함
+  - 구체화된 테스트를 만들기 용이함
+- @ExceptionHandler
+  - Controller에서 발생하는 오류를 처리하여 필요한 로그를 남기고, 응답을 커스마이징할 수 있도록 지원함
+
+- 전역 예외처리
+  - @RestControllerAdvice와 @ExceptionHandler를 조합하여 전체 RestController의 예외에 대해서 처리할 수 있음
+- @RestControllerAdvice
+  - RestController에 전역적으로 동작하는 AOP 어노테이션
+- @ResponseStatus
+  - Controller에서 응답하는 Http Response Code를 지정할 수 있음
+
+
+
+# Parameter Validator(유효성 검사)
+
+- Parameter Validator란?
+  - 내부 로직에서 처리할 수 없는 입력값을 사전에 검증하고, 필요한 오류 및 메시지로 매핑해서 응답하는 것
+- @NotEmpty
+  - 해당 값이 null이거나 empty string("")에 대해서 검증하는 어노테이션
+  - 속성
+    - message : 해당 validation을 통과하지 못할 경우 표시할 오류 메시지
+- @NotBlank
+  - 해당 값이 null이거나 empty string("") 및 공백 문자열(" ")까지 검증하는 어노테이션
+- @Valid
+  - 일반적으로 validator는 해당 인자에 대해서만 검증하므로, 검증 대상이 객체이면 recursive하게 검증할 수 있도록 표시해주는 어노테이
+
+# Paging
+
+- Pageable
+  - JPA에서 정의한 Paging을 위한 인터페이스
+  - 속성
+    - content
+    - totalPages
+    - totalElements
+    - numberOfElements
+- PageRequest
+  - Pageable 인터페이스를 구현한 구현체
+- @PageableDefault
+  - API에서 페이징을 위한 파라미터가 존재하지 않을 때, 페이징을 위한 기본값을 제공
