@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 
@@ -33,8 +34,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Slf4j
 @Transactional
 class PersonControllerTest {
-    @Autowired
-    private PersonController personController;
 
     @Autowired
     private PersonRepository personRepository;
@@ -45,14 +44,18 @@ class PersonControllerTest {
     @Autowired
     MappingJackson2HttpMessageConverter messageConverter;
 
+
+
+    @Autowired
+    private WebApplicationContext wac;
+
     private MockMvc mockMvc;
 
 
     @BeforeEach
     void beforeEach(){
         mockMvc = MockMvcBuilders
-                .standaloneSetup(personController)
-                .setMessageConverters(messageConverter)
+                .webAppContextSetup(wac)
                 .alwaysDo(print())
                 .build();
 
