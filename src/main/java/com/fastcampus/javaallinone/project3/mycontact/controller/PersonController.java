@@ -5,6 +5,9 @@ import com.fastcampus.javaallinone.project3.mycontact.domain.Person;
 import com.fastcampus.javaallinone.project3.mycontact.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,11 @@ public class PersonController {
 
     @Autowired
     private PersonService personService;
+
+    @GetMapping
+    private Page<Person> getAll(@PageableDefault Pageable pageable){
+        return personService.getAll(pageable);
+    }
 
 
     @GetMapping("/{id}")

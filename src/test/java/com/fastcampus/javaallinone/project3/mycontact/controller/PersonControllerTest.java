@@ -61,6 +61,25 @@ class PersonControllerTest {
 
     }
 
+
+    @Test
+    void getAll() throws Exception{
+        mockMvc.perform(
+                MockMvcRequestBuilders.get("/api/person")
+                    .param("page","1")
+                    .param("size","2"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.totalPages").value(3))
+                .andExpect(jsonPath("$.totalElements").value(6))
+//                .andExpect(jsonPath("$.content.[0].name").value("martin"))
+//                .andExpect(jsonPath("$.content.[1].name").value("david"))
+                .andExpect(jsonPath("$.content.[0].name").value("dennis"))
+                .andExpect(jsonPath("$.content.[1].name").value("sophia"));
+//                .andExpect(jsonPath("$.content.[4].name").value("benny"))
+//                .andExpect(jsonPath("$.content.[5].name").value("tony"));
+
+    }
+
     @Test
     void getPerson() throws Exception{
         mockMvc.perform(
